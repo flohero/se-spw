@@ -1,0 +1,3 @@
+include:
+      - local: '/ueb03/.gitlab-ci.yml'
+
