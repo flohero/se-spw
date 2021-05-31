@@ -16,7 +16,7 @@ build:
     name: $CT_JOB_NAME-$CT_COMMIT_REF_SLUG-$CT_COMMIT_SHORT_SHA
     expire_in: 1 week
     paths:
-      - "target/*"
+      - "ueb03/target/*"
   script:
     - cd ueb03/
     - mvn compile
