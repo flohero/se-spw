@@ -31,4 +31,4 @@ test:
       - "$maven_package_cache"
   script:
     - cd ueb03/
-    - mnv test
+    - mvn test
