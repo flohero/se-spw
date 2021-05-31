@@ -1,2 +1,4 @@
+image: maven:latest
+
 include:
     - local: '/ueb03/.gitlab-ci.yml'
