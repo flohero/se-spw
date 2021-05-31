@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
 
 variables:
   maven_package_cache: ".m2/repository/"
@@ -20,3 +21,14 @@ build:
   script:
     - cd ueb03/
     - mvn compile
+
+test:
+  stage: test
+  tags:
+    - docker
+  cache:
+    paths:
+      - "$maven_package_cache"
+  script:
+    - cd ueb03/
+    - mnv test
