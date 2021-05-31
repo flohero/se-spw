@@ -1,15 +1,22 @@
 stages:
   - build
 
-cache:
-  paths:
-    - .m2/repository/
-    - target/
+variables:
+  maven_package_cache: ".m2/repository/"
+  MAVEN_OPTS: "-Dmaven.repo.local=./$maven_package_cache"
 
 build:
   stage: build
   tags:
     - docker
+  cache:
+    paths:
+      - "$maven_package_cache"
+  artifacts:
+    name: $CT_JOB_NAME-$CT_COMMIT_REF_SLUG-$CT_COMMIT_SHORT_SHA
+    expire_in: 1 week
+    paths:
+      - "target/*"
   script:
     - cd ueb03/
     - mvn compile
