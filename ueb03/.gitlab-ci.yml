@@ -1,6 +1,5 @@
 stages:
   - build
-  - test
 
 cache:
   paths:
@@ -12,4 +11,5 @@ build:
   tags:
     - docker
   script:
+    - cd ueb03/
     - mvn compile
