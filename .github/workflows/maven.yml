@@ -21,7 +21,7 @@ jobs:
       working-directory: ueb03
       run: mvn compile
     - name: Get Environment Variables
-      run: git_hash=$(git rev-parse --short "$GITHUB_SHA") && git_slug=$(echo $GITHUB_REF | | awk -F'/' '{print $NF}')
+      run: git_hash=$(git rev-parse --short "$GITHUB_SHA") && git_slug=$(echo $GITHUB_REF | awk -F'/' '{print $NF}')
 
     - name: Step 3 - Use the Upload Artifact GitHub Action
       uses: actions/upload-artifact@v2
