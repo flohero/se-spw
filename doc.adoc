@@ -63,7 +63,7 @@ image::img/gitlab_runner_stop_tomcat.png[]
 
 <<<
 == Deployment On GitHub Actions
-Again since this Repository contains more than one project, the workflow has to be changed a little.
+Again since this Repository contains more than one project, the workflow had to be changed a little.
 
 .GitHub Workflow
 [source,yml]
