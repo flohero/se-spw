@@ -664,6 +664,7 @@ pre.rouge {
 <li><a href="#_test_maven_project">1. Test Maven Project</a></li>
 <li><a href="#_deployment_on_gitlab">2. Deployment on Gitlab</a></li>
 <li><a href="#_deployment_on_github_actions">3. Deployment On GitHub Actions</a></li>
+<li><a href="#_deploy_documentation_to_github_pages">4. Deploy Documentation To GitHub Pages</a></li>
 </ul>
 </div>
 </div>
@@ -960,6 +961,41 @@ pre.rouge {
 <img src="img/github_action_deployment.png" alt="github action deployment">
 </div>
 <div class="title">Figure 11. GitHub Action Deployment</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_documentation_to_github_pages">4. Deploy Documentation To GitHub Pages</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I also added a deployment file, to deploy the documentation to GitHub Pages.
+It should be available at <a href="https://flohero.github.io/se-spw/" class="bare">https://flohero.github.io/se-spw/</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yml"><span class="na">name</span><span class="pi">:</span> <span class="s">build adocs</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="s">push</span>
+  
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">adoc_build</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-18.04</span>
+    <span class="na">steps</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Checkout code</span>
+      <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Get build container</span>
+      <span class="na">id</span><span class="pi">:</span> <span class="s">adocbuild</span>
+      <span class="na">uses</span><span class="pi">:</span> <span class="s">tonynv/asciidoctor-action@master</span>
+      <span class="na">with</span><span class="pi">:</span>
+          <span class="na">program</span><span class="pi">:</span> <span class="s2">"</span><span class="s">asciidoctor</span><span class="nv"> </span><span class="s">-D</span><span class="nv"> </span><span class="s">ueb03/doc</span><span class="nv"> </span><span class="s">--backend=html5</span><span class="nv"> </span><span class="s">-o</span><span class="nv"> </span><span class="s">index.html</span><span class="nv"> </span><span class="s">ueb03/doc/doc.adoc"</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Deploy</span>
+      <span class="na">uses</span><span class="pi">:</span> <span class="s">peaceiris/actions-gh-pages@v3</span>
+      <span class="na">with</span><span class="pi">:</span>
+        <span class="na">github_token</span><span class="pi">:</span> <span class="s">${{ secrets.GITHUB_TOKEN }}</span>
+        <span class="na">publish_dir</span><span class="pi">:</span> <span class="s">./ueb03/doc</span></code></pre>
+</div>
 </div>
 </div>
 </div>
