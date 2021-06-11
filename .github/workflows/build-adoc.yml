@@ -13,9 +13,9 @@ jobs:
       id: adocbuild
       uses: tonynv/asciidoctor-action@master
       with:
-          program: "asciidoctor --backend=html5 -o index.html ueb03/doc/doc.adoc"
+          program: "asciidoctor -D ueb03/doc --backend=html5 -o index.html ueb03/doc/doc.adoc"
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
+        publish_dir: ./ueb03/doc
