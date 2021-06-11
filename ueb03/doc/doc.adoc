@@ -1,4 +1,4 @@
-= Übung 06
+= Exercise 03
 :author: Florian Weingartshofer
 :email: <S1910307103@students.fh-hagenberg.at>
 :reproducible:
