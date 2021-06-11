@@ -13,9 +13,7 @@ jobs:
       id: adocbuild
       uses: tonynv/asciidoctor-action@master
       with:
-          program: "asciidoctor -D doc --backend=html5 -o index.html ueb03/doc/doc.adoc"
-    - name: Print execution time
-      run: echo "Time ${{ steps.adocbuild.outputs.time }}"
+          program: "asciidoctor --backend=html5 -o index.html ueb03/doc/doc.adoc"
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
