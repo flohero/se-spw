@@ -5,9 +5,6 @@ on:
 env:
   maven_package_cache: ".m2/repository/"
   MAVEN_OPTS: "-Dmaven.repo.local=./$maven_package_cache"
-  git_hash: $(git rev-parse --short "$GITHUB_SHA")
-  git_slug: $(echo $GITHUB_REF | awk -F'/' '{print $NF}')
-  
 
 jobs:
   build:
@@ -30,10 +27,14 @@ jobs:
     - name: Build with Maven
       working-directory: ueb03
       run: mvn compile
-
+    - name: Define variables
+      env:
+        # var logic
+        CI_COMMIT_SHORT_SHA: $(git rev-parse --short "$GITHUB_SHA")
+        CI_COMMIT_REF_SLUG: $(echo $GITHUB_REF | awk -F'/' '{print $NF}')
     - name: Step 3 - Use the Upload Artifact GitHub Action
       uses: actions/upload-artifact@v2
       with: 
-        name: ${{ github.job }}-${{ env.git_slug }}-${{ env.git_hash }}
+        name: ${{ github.job }}-${{ env.CI_COMMIT_REF_SLUG }}-${{ env.CI_COMMIT_SHORT_SHA }}
         path: ueb03/target/*
 
