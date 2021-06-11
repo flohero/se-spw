@@ -77,3 +77,13 @@ image::img/github_action.png[]
 .GitHub Action Deployment
 image::img/github_action_deployment.png[]
 
+<<<
+== Deploy Documentation To GitHub Pages
+I also added a deployment file, to deploy the documentation to GitHub Pages.
+It should be available at https://flohero.github.io/se-spw/[]
+
+[source,yml]
+----
+include::../../.github/workflows/build-adoc.yml[]
+----
+
